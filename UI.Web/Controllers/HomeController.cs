@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using API.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -27,7 +23,7 @@ namespace UI.Web.Controllers
             using var httpClient = new HttpClient();
             //httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("", "");
 
-            var responseMessage = await httpClient.GetAsync("http://localhost:60230/api/categories");
+            var responseMessage = await httpClient.GetAsync("http://localhost:59180/api/category");
 
             var jsonString = await responseMessage.Content.ReadAsStringAsync();
             var categories = JsonConvert.DeserializeObject<List<Category>>(jsonString);
@@ -84,5 +80,6 @@ namespace UI.Web.Controllers
             ModelState.AddModelError("", "Server tarafında bir hata oluştu");
             return View(category);
         }
+
     }
 }
